@@ -1,0 +1,48 @@
+@font-face {
+  font-family: 'SourceSans3';
+  src: url(./font/SourceSans3-Regular.ttf);
+}
+
+body {
+  font-family: 'SourceSans3';
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 20vw 80vw;
+  grid-template-rows: 100vh;
+}
+
+.nav-bar {
+  border: solid;
+  grid-column: 1 / 2;
+}
+
+.main {
+  grid-column: 2 / 3;
+}
+
+.add-projects,
+.new-projects-container > button {
+  width: 100%;
+  background: none;
+  border: none;
+}
+
+.add-projects:hover,
+.new-projects-container > button:hover {
+  background-color: rgba(100, 100, 100, 0.3);
+}
+
+
+.add-projects {
+  font-size: 2rem;
+}
+
+.new-projects-container > button {
+  text-align: left;
+  padding: 10px 0 10px 20px;
+  font-size: 1.3rem;
+}
