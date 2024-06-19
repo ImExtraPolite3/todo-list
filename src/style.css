@@ -53,3 +53,11 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: all;
+}
