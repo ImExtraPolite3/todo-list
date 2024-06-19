@@ -49,7 +49,7 @@ body {
   font-size: 1.3rem;
 }
 
-.add-task-dialog {
+.add-task-dialog > div {
   display: flex;
   flex-direction: column;
 }
