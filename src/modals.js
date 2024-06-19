@@ -8,7 +8,7 @@ function openProjectModal() {
 };
 
 function closeProjectModal() {
-  const closeModal = document.querySelectorAll('.close-project-modal');
+  const closeModal = document.querySelectorAll('.close-modal');
   const projectsDialog = document.querySelector('.add-projects-dialog');
   const getProjectName = document.getElementById('project-name');
 

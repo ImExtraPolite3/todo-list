@@ -16,28 +16,30 @@ body {
 }
 
 .nav-bar {
-  border: solid;
   grid-column: 1 / 2;
 }
 
 .main {
+  border: solid;
   grid-column: 2 / 3;
 }
 
 .add-projects,
-.new-projects-container > button {
+.new-projects-container > button,
+.add-task {
   width: 100%;
   background: none;
   border: none;
 }
 
 .add-projects:hover,
-.new-projects-container > button:hover {
+.new-projects-container > button:hover,
+.add-task:hover {
   background-color: rgba(100, 100, 100, 0.3);
 }
 
-
-.add-projects {
+.add-projects,
+.add-task {
   font-size: 2rem;
 }
 
@@ -45,4 +47,9 @@ body {
   text-align: left;
   padding: 10px 0 10px 20px;
   font-size: 1.3rem;
+}
+
+.add-task-dialog {
+  display: flex;
+  flex-direction: column;
 }
