@@ -1,4 +1,4 @@
-import { projects } from "./factories";
+import { projects, tasks } from "./factories";
 
 let something = ''; 
 
@@ -42,6 +42,42 @@ function displayTaskContainer() {
   })
 }
 
+function grabTasksInfo() {
+  const taskName = document.getElementById('task-name');
+  const taskDescription = document.getElementById('task-description');
+  const taskDueDate = document.getElementById('task-due-date');
+  const taskPriority = document.getElementById('priority');
+
+  const grabTasksInfo = tasks(taskName.value, taskDescription.value, taskDueDate.value, taskPriority.value);
+
+  return grabTasksInfo;
+}
+
+function eachTask() {
+  const taskNameContainer = document.createElement('p');
+  const taskDescriptionContainer = document.createElement('p');
+  const taskDueDateContainer = document.createElement('p');
+  const taskPriority = document.createElement('p');
+
+  taskNameContainer.textContent = grabTasksInfo().taskName;
+  taskDescriptionContainer.textContent = grabTasksInfo().taskDescription;
+  taskDueDateContainer.textContent = grabTasksInfo().taskDueDate;
+  taskPriority.textContent = grabTasksInfo().taskPriority;
+
+  displayEachTask(taskNameContainer, taskDescriptionContainer, taskDueDateContainer, taskPriority);
+}
+
+function displayEachTask(taskName, taskDescription, taskDueDate, taskPriority) {
+  const task = document.querySelector(something);
+
+  console.log(taskName);
+
+  // task.appendChild(taskName);
+  // task.appendChild(taskDescription);
+  // task.appendChild(taskDueDate);
+  // task.appendChild(taskPriority);
+}
+
 function displayNewProjectName() {
   const newProjectContainer = document.querySelector('.new-projects-container');
   const submitProjectName = document.querySelector('.submit-project-name');
@@ -65,14 +101,14 @@ function test() {
   const submitTaskName = document.querySelector('.submit-task-name');
 
   submitTaskName.addEventListener('click', () => {
-    task.forEach(eachTask => {
-      if (something === eachTask.className.split(' ')[1]) {
-        const testDiv = document.createElement('p');
-        testDiv.textContent = 'sucess';
-        eachTask.appendChild(testDiv);
+    task.forEach(eachNewTask => {
+      if (something === eachNewTask.className.split(' ')[1]) {
+        eachTask();
+        // displayEachTask()
+        // grabTasksInfo();
       }
     })
   })
 }
 
-export { displayNewProjectName, displayTaskContainer, check }
+export { displayNewProjectName, displayTaskContainer, displayEachTask, check }

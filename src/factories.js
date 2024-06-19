@@ -2,4 +2,8 @@ function projects (projectName) {
   return { projectName };
 }
 
-export { projects };
+function tasks (taskName, taskDescription, taskDueDate, taskPriority) {
+  return { taskName, taskDescription, taskDueDate, taskPriority };
+}
+
+export { projects, tasks };
