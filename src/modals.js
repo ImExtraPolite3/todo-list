@@ -10,10 +10,12 @@ function openProjectModal() {
 function closeProjectModal() {
   const closeModal = document.querySelectorAll('.close-project-modal');
   const projectsDialog = document.querySelector('.add-projects-dialog');
+  const getProjectName = document.getElementById('project-name');
 
   closeModal.forEach(eachClose => {
     eachClose.addEventListener('click', () => {
       projectsDialog.close();
+      getProjectName.value = '';
     });
   })
 }
