@@ -32,7 +32,6 @@ function closeModal() {
     eachClose.addEventListener('click', () => {
       projectsDialog.close();
       tasksDialog.close();
-      displayTaskContainer();
       getProjectName.value = '';
       getTaskName.value = '';
       getTaskDescription.value = '';

@@ -1,8 +1,9 @@
 import './style.css';
 import { openProjectModal, openTaskModal, closeModal } from './modals';
-import { displayNewProjectName, displayTaskContainer } from './display';
+import { displayNewProjectName, check } from './display';
 
-openProjectModal();
 displayNewProjectName();
+openProjectModal();
 openTaskModal();
 closeModal();
+check();

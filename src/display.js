@@ -1,5 +1,7 @@
 import { projects } from "./factories";
 
+let something = ''; 
+
 function grabNames() {
   const getProjectName = document.getElementById('project-name');
   const grabNames = projects(getProjectName.value);
@@ -11,7 +13,6 @@ function getNewProjectsName() {
   const createButton = document.createElement('button');
   createButton.classList.add('project')
   createButton.classList.add(grabNames());
-
   createButton.textContent = grabNames();
   
   return createButton;
@@ -19,6 +20,7 @@ function getNewProjectsName() {
 
 function createTaskContainer() {
   const eachTaskContainer = document.createElement('div');
+  eachTaskContainer.classList.add('task');
   eachTaskContainer.classList.add(grabNames());
 
   return eachTaskContainer;
@@ -33,6 +35,7 @@ function displayTaskContainer() {
 
   allProjects.forEach(eachProject => {
     eachProject.addEventListener('click', () => {
+      something = eachProject.className.split(' ')[1];
       addTaskButton.classList.remove('hide');
       addTaskButton.classList.add('show');
     })
@@ -45,7 +48,31 @@ function displayNewProjectName() {
 
   submitProjectName.addEventListener('click', () => {
     newProjectContainer.appendChild(getNewProjectsName());
+    displayTaskContainer();
   })
 }
 
-export { displayNewProjectName, displayTaskContainer }
+function check() {
+  const submitTaskName = document.querySelector('.submit-task-name');
+
+  submitTaskName.addEventListener('click', () => {
+    test();
+  })
+}
+
+function test() {
+  const task = document.querySelectorAll('.task');
+  const submitTaskName = document.querySelector('.submit-task-name');
+
+  submitTaskName.addEventListener('click', () => {
+    task.forEach(eachTask => {
+      if (something === eachTask.className.split(' ')[1]) {
+        const testDiv = document.createElement('p');
+        testDiv.textContent = 'sucess';
+        eachTask.appendChild(testDiv);
+      }
+    })
+  })
+}
+
+export { displayNewProjectName, displayTaskContainer, check }

@@ -54,6 +54,11 @@ body {
   flex-direction: column;
 }
 
+.task {
+  border: solid;
+  padding: 50px 0;
+}
+
 .hide {
   display: none;
 }
