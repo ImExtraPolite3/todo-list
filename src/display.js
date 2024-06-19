@@ -1,8 +1,11 @@
+import { projects } from "./factories";
+
 function getNewProjectsName() {
   const getProjectName = document.getElementById('project-name');
   const createButton = document.createElement('button');
+  const grabNames = projects(getProjectName.value);
 
-  createButton.textContent = getProjectName.value;
+  createButton.textContent = grabNames.projectName;
   
   return createButton;
 }
@@ -15,6 +18,5 @@ function displayNewProjectName() {
     newProjectContainer.appendChild(getNewProjectsName());
   })
 }
-
 
 export { displayNewProjectName }
