@@ -1,7 +1,6 @@
 import { projects, tasks } from "./factories";
 
 let something = 'default'; 
-let ifTrue = false;
 
 function grabNames() {
   const getProjectName = document.getElementById('project-name');
@@ -73,15 +72,7 @@ function eachTask(num) {
   removeTask.textContent = 'delete';
   finishTask.type = 'checkbox';
 
-  // if (displayEachTask(finishTask, taskNameContainer, taskDescriptionContainer, taskDueDateContainer, taskPriority, removeTask, topDiv, bottomDiv, num) == true) {
-  //   // displayEachTask(finishTask, taskNameContainer, taskDescriptionContainer, taskDueDateContainer, taskPriority, removeTask, topDiv, bottomDiv, num);
-  //   console.log()
-  //   return true;
-  // } else {
-  //   // displayEachTask(finishTask, taskNameContainer, taskDescriptionContainer, taskDueDateContainer, taskPriority, removeTask, topDiv, bottomDiv, num);
-  //   return false;
-  // }
-  console.log(displayEachTask(finishTask, taskNameContainer, taskDescriptionContainer, taskDueDateContainer, taskPriority, removeTask, topDiv, bottomDiv, num));  
+  displayEachTask(finishTask, taskNameContainer, taskDescriptionContainer, taskDueDateContainer, taskPriority, removeTask, topDiv, bottomDiv, num);  
 }
 
 function displayEachTask(finishTask, taskName, taskDescription, taskDueDate, taskPriority, deleteTask, topDiv, bottomDiv, num) {
@@ -89,24 +80,19 @@ function displayEachTask(finishTask, taskName, taskDescription, taskDueDate, tas
 
   task.forEach(eachNewTask => {
     if (something === eachNewTask.className.split(' ')[1]) {
-      if (taskName.textContent != '' && taskDueDate.textContent != '') {
-        const eachTaskDiv = document.createElement('div');
-        eachNewTask.appendChild(eachTaskDiv);
-        eachTaskDiv.appendChild(topDiv);
-        topDiv.appendChild(finishTask);
-        topDiv.appendChild(taskName);
-        topDiv.appendChild(deleteTask);
-        eachTaskDiv.appendChild(taskDescription);
-        eachTaskDiv.appendChild(bottomDiv);
-        bottomDiv.appendChild(taskDueDate);
-        bottomDiv.appendChild(taskPriority);
-        checkFinished(eachTaskDiv, finishTask);
-        deleteTaskButton(eachNewTask, eachTaskDiv, num);
-        ifTrue = true;
-      } else {
-        ifTrue = false;
-      }
-    }
+      const eachTaskDiv = document.createElement('div');
+      eachNewTask.appendChild(eachTaskDiv);
+      eachTaskDiv.appendChild(topDiv);
+      topDiv.appendChild(finishTask);
+      topDiv.appendChild(taskName);
+      topDiv.appendChild(deleteTask);
+      eachTaskDiv.appendChild(taskDescription);
+      eachTaskDiv.appendChild(bottomDiv);
+      bottomDiv.appendChild(taskDueDate);
+      bottomDiv.appendChild(taskPriority);
+      checkFinished(eachTaskDiv, finishTask);
+      deleteTaskButton(eachNewTask, eachTaskDiv, num);
+    } 
   })
 }
 
