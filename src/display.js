@@ -1,6 +1,6 @@
 import { projects, tasks } from "./factories";
 
-let something = ''; 
+let something = 'default'; 
 
 function grabNames() {
   const getProjectName = document.getElementById('project-name');
