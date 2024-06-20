@@ -51,13 +51,19 @@ function submitTaskName() {
   let num = 0;
 
   submitTask.addEventListener('click', () => {
-    tasksDialog.close();
-    eachTask(num);
-    getTaskName.value = '';
-    getTaskDescription.value = '';
-    getTaskDueDate.value = '';
-    getTaskPriority.value = 'low';
-    num++;
+    console.log(eachTask(num));
+
+    // if (eachTask(num) == true) {
+    //   tasksDialog.close();
+    //   eachTask(num);
+    //   getTaskName.value = '';
+    //   getTaskDescription.value = '';
+    //   getTaskDueDate.value = '';
+    //   getTaskPriority.value = 'low';
+    //   num++;
+    // } else {
+    //   console.log('fix');
+    // }
   })
 }
 

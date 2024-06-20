@@ -1,6 +1,7 @@
 import { projects, tasks } from "./factories";
 
 let something = 'default'; 
+let ifTrue = false;
 
 function grabNames() {
   const getProjectName = document.getElementById('project-name');
@@ -54,6 +55,8 @@ function grabTasksInfo() {
 }
 
 function eachTask(num) {
+  const finishTask = document.createElement('input');
+  finishTask.classList.add('finish-task' + num);
   const taskNameContainer = document.createElement('h3');
   const taskDescriptionContainer = document.createElement('div');
   const taskDueDateContainer = document.createElement('p');
@@ -68,25 +71,41 @@ function eachTask(num) {
   taskDueDateContainer.textContent = `Due Date: ${grabTasksInfo().taskDueDate}`;
   taskPriority.textContent = `Priority: ${grabTasksInfo().taskPriority}`;
   removeTask.textContent = 'delete';
+  finishTask.type = 'checkbox';
 
-  displayEachTask(taskNameContainer, taskDescriptionContainer, taskDueDateContainer, taskPriority, removeTask, topDiv, bottomDiv, num);
+  // if (displayEachTask(finishTask, taskNameContainer, taskDescriptionContainer, taskDueDateContainer, taskPriority, removeTask, topDiv, bottomDiv, num) == true) {
+  //   // displayEachTask(finishTask, taskNameContainer, taskDescriptionContainer, taskDueDateContainer, taskPriority, removeTask, topDiv, bottomDiv, num);
+  //   console.log()
+  //   return true;
+  // } else {
+  //   // displayEachTask(finishTask, taskNameContainer, taskDescriptionContainer, taskDueDateContainer, taskPriority, removeTask, topDiv, bottomDiv, num);
+  //   return false;
+  // }
+  console.log(displayEachTask(finishTask, taskNameContainer, taskDescriptionContainer, taskDueDateContainer, taskPriority, removeTask, topDiv, bottomDiv, num));  
 }
 
-function displayEachTask(taskName, taskDescription, taskDueDate, taskPriority, deleteTask, topDiv, bottomDiv, num) {
+function displayEachTask(finishTask, taskName, taskDescription, taskDueDate, taskPriority, deleteTask, topDiv, bottomDiv, num) {
   const task = document.querySelectorAll('.task');
 
   task.forEach(eachNewTask => {
     if (something === eachNewTask.className.split(' ')[1]) {
-      const eachTaskDiv = document.createElement('div');
-      eachNewTask.appendChild(eachTaskDiv);
-      eachTaskDiv.appendChild(topDiv);
-      topDiv.appendChild(taskName);
-      topDiv.appendChild(deleteTask);
-      eachTaskDiv.appendChild(taskDescription);
-      eachTaskDiv.appendChild(bottomDiv);
-      bottomDiv.appendChild(taskDueDate);
-      bottomDiv.appendChild(taskPriority);
-      deleteTaskButton(eachNewTask, eachTaskDiv, num);
+      if (taskName.textContent != '' && taskDueDate.textContent != '') {
+        const eachTaskDiv = document.createElement('div');
+        eachNewTask.appendChild(eachTaskDiv);
+        eachTaskDiv.appendChild(topDiv);
+        topDiv.appendChild(finishTask);
+        topDiv.appendChild(taskName);
+        topDiv.appendChild(deleteTask);
+        eachTaskDiv.appendChild(taskDescription);
+        eachTaskDiv.appendChild(bottomDiv);
+        bottomDiv.appendChild(taskDueDate);
+        bottomDiv.appendChild(taskPriority);
+        checkFinished(eachTaskDiv, finishTask);
+        deleteTaskButton(eachNewTask, eachTaskDiv, num);
+        ifTrue = true;
+      } else {
+        ifTrue = false;
+      }
     }
   })
 }
@@ -127,6 +146,16 @@ function deleteTaskButton(eachTask, newDiv, num) {
 
   deleteTaskButton.addEventListener('click', () => {
     eachTask.removeChild(newDiv);
+  })
+}
+
+function checkFinished(eachTaskDiv, finishTask) {
+  finishTask.addEventListener('click', () => {
+    if (finishTask.checked === true) {
+      eachTaskDiv.style.backgroundColor = 'green';
+    } else {
+      eachTaskDiv.style.background = 'none';
+    }
   })
 }
 
