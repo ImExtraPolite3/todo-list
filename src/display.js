@@ -22,6 +22,7 @@ function createTaskContainer() {
   const eachTaskContainer = document.createElement('div');
   eachTaskContainer.classList.add('task');
   eachTaskContainer.classList.add(grabNames());
+  eachTaskContainer.classList.add('hide');
 
   return eachTaskContainer;
 }
@@ -38,6 +39,7 @@ function displayTaskContainer() {
       something = eachProject.className.split(' ')[1];
       addTaskButton.classList.remove('hide');
       addTaskButton.classList.add('show');
+      hideOtherProjectTask();
     })
   })
 }
@@ -68,14 +70,32 @@ function eachTask() {
 }
 
 function displayEachTask(taskName, taskDescription, taskDueDate, taskPriority) {
-  const task = document.querySelector(something);
+  const task = document.querySelectorAll('.task');
 
-  console.log(taskName);
+  task.forEach(eachNewTask => {
+    if (something === eachNewTask.className.split(' ')[1]) {
+      const eachTaskDiv = document.createElement('div');
+      eachNewTask.appendChild(eachTaskDiv);
+      eachTaskDiv.appendChild(taskName);
+      eachTaskDiv.appendChild(taskDescription);
+      eachTaskDiv.appendChild(taskDueDate);
+      eachTaskDiv.appendChild(taskPriority);
+    }
+  })
+}
 
-  // task.appendChild(taskName);
-  // task.appendChild(taskDescription);
-  // task.appendChild(taskDueDate);
-  // task.appendChild(taskPriority);
+function hideOtherProjectTask() {
+  const task = document.querySelectorAll('.task');
+
+  task.forEach(eachNewTask => {
+    if (something === eachNewTask.className.split(' ')[1]) {
+      eachNewTask.classList.remove('hide');
+      eachNewTask.classList.add('show');
+    } else {
+      eachNewTask.classList.remove('show');
+      eachNewTask.classList.add('hide');
+    }
+  })
 }
 
 function displayNewProjectName() {
@@ -88,27 +108,4 @@ function displayNewProjectName() {
   })
 }
 
-function check() {
-  const submitTaskName = document.querySelector('.submit-task-name');
-
-  submitTaskName.addEventListener('click', () => {
-    test();
-  })
-}
-
-function test() {
-  const task = document.querySelectorAll('.task');
-  const submitTaskName = document.querySelector('.submit-task-name');
-
-  submitTaskName.addEventListener('click', () => {
-    task.forEach(eachNewTask => {
-      if (something === eachNewTask.className.split(' ')[1]) {
-        eachTask();
-        // displayEachTask()
-        // grabTasksInfo();
-      }
-    })
-  })
-}
-
-export { displayNewProjectName, displayTaskContainer, displayEachTask, check }
+export { displayNewProjectName, eachTask, hideOtherProjectTask }

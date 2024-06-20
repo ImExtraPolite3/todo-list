@@ -1,4 +1,4 @@
-import { displayEachTask, grabTasksInfo } from "./display";
+import { eachTask } from "./display";
 
 function openProjectModal() {
   const addProjectsButton = document.querySelector('.add-projects'); 
@@ -49,11 +49,9 @@ function submitTaskName() {
   const getTaskDueDate = document.getElementById('task-due-date');
   const getTaskPriority = document.getElementById('priority');
 
-  grabTasksInfo();
-
   submitTask.addEventListener('click', () => {
     tasksDialog.close();
-    displayEachTask();
+    eachTask();
     getTaskName.value = '';
     getTaskDescription.value = '';
     getTaskDueDate.value = '';
