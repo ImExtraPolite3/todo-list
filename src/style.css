@@ -19,12 +19,16 @@ body {
   grid-column: 1 / 2;
 }
 
+.nav-bar > h1 {
+  padding-left: 10px;
+}
+
 .main {
   grid-column: 2 / 3;
 }
 
 .add-projects,
-.new-projects-container > button,
+.project,
 .add-task {
   width: 100%;
   background: none;
@@ -35,6 +39,14 @@ body {
 .new-projects-container > button:hover,
 .add-task:hover {
   background-color: rgba(100, 100, 100, 0.3);
+}
+
+.active-tab {
+  background-color: rgba(100, 100, 100, 0.3);
+}
+
+.remove-active {
+  background: none;
 }
 
 .add-projects,

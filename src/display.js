@@ -30,15 +30,13 @@ function createTaskContainer() {
 function displayTaskContainer() {
   const allTaskContainer = document.querySelector('.new-tasks-container');
   const allProjects = document.querySelectorAll('.project');
-  const addTaskButton = document.querySelector('.add-task');
 
   allTaskContainer.appendChild(createTaskContainer());
 
   allProjects.forEach(eachProject => {
     eachProject.addEventListener('click', () => {
       something = eachProject.className.split(' ')[1];
-      addTaskButton.classList.remove('hide');
-      addTaskButton.classList.add('show');
+      changeActiveProject();
       hideOtherProjectTask();
     })
   })
@@ -89,6 +87,20 @@ function displayEachTask(taskName, taskDescription, taskDueDate, taskPriority, d
       bottomDiv.appendChild(taskDueDate);
       bottomDiv.appendChild(taskPriority);
       deleteTaskButton(eachNewTask, eachTaskDiv, num);
+    }
+  })
+}
+
+function changeActiveProject() {
+  const allProjects = document.querySelectorAll('.project');
+
+  allProjects.forEach(eachProject => {
+    if(something === eachProject.className.split(' ')[1]) {
+      eachProject.classList.remove('remove-active');
+      eachProject.classList.add('active-tab');
+    } else {
+      eachProject.classList.remove('active-tab');
+      eachProject.classList.add('remove-active');
     }
   })
 }
