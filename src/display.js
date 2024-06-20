@@ -55,31 +55,40 @@ function grabTasksInfo() {
   return grabTasksInfo;
 }
 
-function eachTask() {
-  const taskNameContainer = document.createElement('p');
-  const taskDescriptionContainer = document.createElement('p');
+function eachTask(num) {
+  const taskNameContainer = document.createElement('h3');
+  const taskDescriptionContainer = document.createElement('div');
   const taskDueDateContainer = document.createElement('p');
   const taskPriority = document.createElement('p');
+  const removeTask = document.createElement('button');
+  removeTask.classList.add('delete-task' + num);
+  const topDiv = document.createElement('div');
+  const bottomDiv = document.createElement('div');
 
   taskNameContainer.textContent = grabTasksInfo().taskName;
   taskDescriptionContainer.textContent = grabTasksInfo().taskDescription;
-  taskDueDateContainer.textContent = grabTasksInfo().taskDueDate;
-  taskPriority.textContent = grabTasksInfo().taskPriority;
+  taskDueDateContainer.textContent = `Due Date: ${grabTasksInfo().taskDueDate}`;
+  taskPriority.textContent = `Priority: ${grabTasksInfo().taskPriority}`;
+  removeTask.textContent = 'delete';
 
-  displayEachTask(taskNameContainer, taskDescriptionContainer, taskDueDateContainer, taskPriority);
+  displayEachTask(taskNameContainer, taskDescriptionContainer, taskDueDateContainer, taskPriority, removeTask, topDiv, bottomDiv, num);
 }
 
-function displayEachTask(taskName, taskDescription, taskDueDate, taskPriority) {
+function displayEachTask(taskName, taskDescription, taskDueDate, taskPriority, deleteTask, topDiv, bottomDiv, num) {
   const task = document.querySelectorAll('.task');
 
   task.forEach(eachNewTask => {
     if (something === eachNewTask.className.split(' ')[1]) {
       const eachTaskDiv = document.createElement('div');
       eachNewTask.appendChild(eachTaskDiv);
-      eachTaskDiv.appendChild(taskName);
+      eachTaskDiv.appendChild(topDiv);
+      topDiv.appendChild(taskName);
+      topDiv.appendChild(deleteTask);
       eachTaskDiv.appendChild(taskDescription);
-      eachTaskDiv.appendChild(taskDueDate);
-      eachTaskDiv.appendChild(taskPriority);
+      eachTaskDiv.appendChild(bottomDiv);
+      bottomDiv.appendChild(taskDueDate);
+      bottomDiv.appendChild(taskPriority);
+      deleteTaskButton(eachNewTask, eachTaskDiv, num);
     }
   })
 }
@@ -95,6 +104,14 @@ function hideOtherProjectTask() {
       eachNewTask.classList.remove('show');
       eachNewTask.classList.add('hide');
     }
+  })
+}
+
+function deleteTaskButton(eachTask, newDiv, num) {
+  const deleteTaskButton = document.querySelector('.delete-task' + num);
+
+  deleteTaskButton.addEventListener('click', () => {
+    eachTask.removeChild(newDiv);
   })
 }
 

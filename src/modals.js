@@ -48,14 +48,16 @@ function submitTaskName() {
   const getTaskDescription = document.getElementById('task-description');
   const getTaskDueDate = document.getElementById('task-due-date');
   const getTaskPriority = document.getElementById('priority');
+  let num = 0;
 
   submitTask.addEventListener('click', () => {
     tasksDialog.close();
-    eachTask();
+    eachTask(num);
     getTaskName.value = '';
     getTaskDescription.value = '';
     getTaskDueDate.value = '';
     getTaskPriority.value = 'low';
+    num++;
   })
 }
 
