@@ -97,7 +97,10 @@ function hideOtherProjectTask() {
   const task = document.querySelectorAll('.task');
 
   task.forEach(eachNewTask => {
-    if (something === eachNewTask.className.split(' ')[1]) {
+    if (something === 'default') {
+      eachNewTask.classList.remove('hide');
+      eachNewTask.classList.add('show');
+    } else if (something === eachNewTask.className.split(' ')[1]) {
       eachNewTask.classList.remove('hide');
       eachNewTask.classList.add('show');
     } else {
