@@ -6,7 +6,7 @@ function grabNames() {
   const getProjectName = document.getElementById('project-name');
   const grabNames = projects(getProjectName.value);
 
-  return grabNames.projectName;
+  return grabNames.newProjectName;
 }
 
 function getNewProjectsName() {

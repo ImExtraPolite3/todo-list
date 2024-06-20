@@ -24,10 +24,10 @@ body {
 .add-projects-dialog {
   background-color: rgb(30, 30, 30);
   color: white;
-  padding: 0;
+  padding: 20px;
 }
 
-.add-projects-dialog > input,
+.add-projects-dialog > div > input,
 .add-task-dialog > div > input,
 .add-task-dialog > div > textarea, 
 .add-task-dialog > div > select {
@@ -38,14 +38,32 @@ body {
 }
 
 .add-task-dialog > div > div,
-.add-projects-dialog > div {
+.add-projects-dialog > div > div {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  margin-top: 20px;
 }
 
 .add-task-dialog > div > div > button,
-.add-projects-dialog > div > button {
+.add-projects-dialog > div > div > button {
   padding: 10px 50px;
+  background: none;
+  border: none; 
+  color: white;
+}
+
+.close-modal:hover  {
+  background-color: red;
+}
+
+.submit-project-name:hover,
+.submit-task-name:hover {
+  background-color: green;
+}
+
+.add-projects-dialog > div {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
 }
 
 .nav-bar {

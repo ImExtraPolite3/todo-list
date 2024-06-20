@@ -1,5 +1,15 @@
 function projects (projectName) {
-  return { projectName };
+  let newProjectName = '';
+
+  for(let i = 0; i < projectName.length; i++) {
+    if (projectName[i] == ' ') {
+      newProjectName += '-';
+    } else {
+      newProjectName += projectName[i];
+    }
+  }
+
+  return { projectName, newProjectName };
 }
 
 function tasks (taskName, taskDescription, taskDueDate, taskPriority) {
