@@ -18,6 +18,16 @@ function getNewProjectsName() {
   return createButton;
 }
 
+function displayNewProjectName() {
+  const newProjectContainer = document.querySelector('.new-projects-container');
+  const submitProjectName = document.querySelector('.submit-project-name');
+
+  submitProjectName.addEventListener('click', () => {
+    newProjectContainer.appendChild(getNewProjectsName());
+    displayTaskContainer();
+  })
+}
+
 function createTaskContainer() {
   const eachTaskContainer = document.createElement('div');
   eachTaskContainer.classList.add('task');
@@ -142,16 +152,6 @@ function checkFinished(eachTaskDiv, finishTask) {
     } else {
       eachTaskDiv.style.background = 'none';
     }
-  })
-}
-
-function displayNewProjectName() {
-  const newProjectContainer = document.querySelector('.new-projects-container');
-  const submitProjectName = document.querySelector('.submit-project-name');
-
-  submitProjectName.addEventListener('click', () => {
-    newProjectContainer.appendChild(getNewProjectsName());
-    displayTaskContainer();
   })
 }
 
