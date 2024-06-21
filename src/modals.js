@@ -22,6 +22,7 @@ function closeModal() {
   const closeModal = document.querySelectorAll('.close-modal');
   const projectsDialog = document.querySelector('.add-projects-dialog');
   const tasksDialog = document.querySelector('.add-task-dialog');
+  const ifNoInfo = document.querySelector('.add-task-dialog > div > p');
   const getProjectName = document.getElementById('project-name');
   const getTaskName = document.getElementById('task-name');
   const getTaskDescription = document.getElementById('task-description');
@@ -37,6 +38,8 @@ function closeModal() {
       getTaskDescription.value = '';
       getTaskDueDate.value = '';
       getTaskPriority.value = 'low';
+      ifNoInfo.classList.remove('show');
+      ifNoInfo.classList.add('hide');
     });
   })
 }
@@ -44,6 +47,7 @@ function closeModal() {
 function submitTaskName() {
   const submitTask = document.querySelector('.submit-task-name');
   const tasksDialog = document.querySelector('.add-task-dialog');
+  const ifNoInfo = document.querySelector('.add-task-dialog > div > p');
   const getTaskName = document.getElementById('task-name');
   const getTaskDescription = document.getElementById('task-description');
   const getTaskDueDate = document.getElementById('task-due-date');
@@ -51,13 +55,20 @@ function submitTaskName() {
   let num = 0;
 
   submitTask.addEventListener('click', () => {
-    tasksDialog.close();
-    eachTask(num);
-    getTaskName.value = '';
-    getTaskDescription.value = '';
-    getTaskDueDate.value = '';
-    getTaskPriority.value = 'low';
-    num++;
+    if (getTaskName.value !== '' && getTaskDueDate.value !== '') {
+      tasksDialog.close();
+      eachTask(num);
+      getTaskName.value = '';
+      getTaskDescription.value = '';
+      getTaskDueDate.value = '';
+      getTaskPriority.value = 'low';
+      ifNoInfo.classList.remove('show');
+      ifNoInfo.classList.add('hide');
+      num++;
+    } else {
+      ifNoInfo.classList.remove('hide');
+      ifNoInfo.classList.add('show');
+    }
   })
 }
 
